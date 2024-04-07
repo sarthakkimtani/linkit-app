@@ -4,16 +4,19 @@ import jwt from "jsonwebtoken";
 import { AuthenticationError } from "../exceptions/errors.js";
 
 export const authorizationMiddleware = (req: Request, res: Response, next: NextFunction) => {
+  const refreshToken = req.cookies.token;
   const authHeader = req.headers["authorization"];
-  const token = authHeader?.split(" ")[1];
-  if (!token) {
+  const accessToken = authHeader?.split(" ")[1];
+
+  if (!accessToken || !refreshToken) {
     return next(new AuthenticationError("Token not found"));
   }
 
-  jwt.verify(token, process.env.JWT_ACCESS_SECRET!, (err: any, data: any) => {
-    if (err || !data) {
-      return next(new AuthenticationError("Invalid token"));
-    }
-  });
+  try {
+    const payload = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET!) as jwt.JwtPayload;
+    req.userId = payload.id as string;
+  } catch (err) {
+    return next(new AuthenticationError("Invalid access token"));
+  }
   return next();
 };
