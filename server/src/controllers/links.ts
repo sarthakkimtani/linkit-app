@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { string, z } from "zod";
+import { z } from "zod";
 
 import prisma from "../prisma.js";
 import { UserInputError } from "../exceptions/errors.js";

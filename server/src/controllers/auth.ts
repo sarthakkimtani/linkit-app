@@ -38,7 +38,11 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
       secure: process.env.NODE_ENV === "production",
     });
 
-    res.status(200).json({ success: true, userId: user.id, email: user.email, accessToken });
+    res.status(200).json({
+      success: true,
+      accessToken,
+      profile: { id: user.id, email: user.email, username: user.username },
+    });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return next(new UserInputError(formatZodIssue(err.issues[0])));
@@ -67,7 +71,11 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
       secure: process.env.NODE_ENV === "production",
     });
 
-    res.status(201).json({ success: true, userId: user.id, email: user.email, accessToken });
+    res.status(201).json({
+      success: true,
+      accessToken,
+      profile: { id: user.id, email: user.email, username: user.username },
+    });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return next(new UserInputError(formatZodIssue(err.issues[0])));
@@ -80,7 +88,7 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
   const refreshToken = req.cookies.token;
 
   try {
-    const data = await authUtils.handleRefreshToken(refreshToken);
+    await authUtils.handleRefreshToken(refreshToken);
     const tokenData = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET!) as jwt.JwtPayload;
 
     const accessToken = jwt.sign({ id: tokenData.id }, process.env.JWT_ACCESS_SECRET!, {
@@ -97,7 +105,7 @@ export const logout = async (req: Request, res: Response, next: NextFunction) =>
   const refreshToken = req.cookies.token;
 
   try {
-    const data = await authUtils.handleRefreshToken(refreshToken);
+    await authUtils.handleRefreshToken(refreshToken);
     const tokenHash = crypto.createHash("sha256").update(refreshToken).digest("hex");
     const deletedData = await prisma.token.delete({ where: { token: tokenHash } });
 

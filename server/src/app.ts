@@ -1,6 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 import rootRouter from "./routes/index.js";
 import { errorMiddleware } from "./middlewares/error.js";
@@ -8,9 +9,16 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 const app: Express = express();
+const corsOptions = {
+  origin: "http://localhost:5173",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors(corsOptions));
 app.use("/", rootRouter);
 app.use(errorMiddleware);
 
