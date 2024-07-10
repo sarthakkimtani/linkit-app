@@ -1,13 +1,13 @@
 type AuthMode = "login" | "signup";
 
-interface UserType {
+interface User {
   id: string;
   username: string;
   email: string;
 }
 
 interface AuthState {
-  user: UserType | null;
+  user: User | null;
   loading: boolean;
 }
 
@@ -22,4 +22,14 @@ interface Credentials {
   username: string;
   email: string;
   password: string;
+}
+
+interface ErrorType {
+  isError: boolean;
+  description: string;
+}
+
+interface Link {
+  url: string;
+  title: string;
 }

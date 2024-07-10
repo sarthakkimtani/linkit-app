@@ -13,7 +13,7 @@ export const getMe = async (req: Request, res: Response, next: NextFunction) => 
     if (!userData) {
       next(new NotFoundError("User not found"));
     }
-    res.status(200).json({ success: true, data: userData });
+    res.status(200).json({ success: true, profile: userData });
   } catch (err) {
     next(err);
   }

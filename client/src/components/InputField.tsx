@@ -7,7 +7,7 @@ interface InputFieldProps extends ComponentProps<"input"> {
   labelName: string;
 }
 
-export function InputField({ labelName, ...rest }: InputFieldProps) {
+function InputField({ labelName, ...rest }: InputFieldProps) {
   return (
     <div className="grid w-full items-center mb-3">
       <div className="flex flex-col space-y-1.5">
@@ -17,3 +17,5 @@ export function InputField({ labelName, ...rest }: InputFieldProps) {
     </div>
   );
 }
+
+export default InputField;

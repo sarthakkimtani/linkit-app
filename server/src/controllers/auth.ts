@@ -35,6 +35,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     res.cookie("token", refreshToken, {
       httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 30,
       secure: process.env.NODE_ENV === "production",
     });
 
@@ -68,6 +69,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
 
     res.cookie("token", refreshToken, {
       httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 30,
       secure: process.env.NODE_ENV === "production",
     });
 

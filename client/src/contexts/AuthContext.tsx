@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, ReactNode } from "react";
 
-import axiosInstance, { setAccessToken } from "../lib/axiosInstance";
+import axiosInstance, { setAccessToken } from "@/lib/axiosInstance";
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const fetchUser = async () => {
       try {
         const { data } = await axiosInstance.get("/me");
-        setAuthState({ user: data, loading: false });
+        setAuthState({ user: data.profile, loading: false });
       } catch (error) {
         setAuthState({ user: null, loading: false });
       }
