@@ -1,11 +1,11 @@
 import { Router } from "express";
 
-import { deleteLink, getLinks, postLinks, updateLink } from "../controllers/links.js";
+import { deleteLink, getLinks, postLink, updateLink } from "../controllers/links.js";
 
 const linksRouter: Router = Router();
 
 linksRouter.get("/", getLinks);
-linksRouter.post("/", postLinks);
+linksRouter.post("/", postLink);
 linksRouter.put("/", updateLink);
 linksRouter.delete("/", deleteLink);
 

@@ -10,8 +10,6 @@ const linkBody = z.object({
   url: z.string().url(),
 });
 
-const linkSchema = z.array(linkBody);
-
 export const getLinks = async (req: Request, res: Response, next: NextFunction) => {
   const id = req.userId!;
   try {
@@ -22,15 +20,15 @@ export const getLinks = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
-export const postLinks = async (req: Request, res: Response, next: NextFunction) => {
+export const postLink = async (req: Request, res: Response, next: NextFunction) => {
   const userId = req.userId!;
 
   try {
-    const links = linkSchema.parse(req.body);
-    const createdLink = await prisma.link.createMany({
-      data: links.map((link) => ({ ...link, userId })),
+    const link = linkBody.parse(req.body);
+    const createdLink = await prisma.link.create({
+      data: { ...link, userId },
     });
-    res.status(200).json({ success: true, count: createdLink.count });
+    res.status(200).json({ success: true, linkId: createdLink.id });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return next(new UserInputError(formatZodIssue(err.issues[0])));
@@ -41,8 +39,8 @@ export const postLinks = async (req: Request, res: Response, next: NextFunction)
 
 export const updateLink = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { linkId, title, url } = linkBody.extend({ linkId: z.string() }).parse(req.body);
-    const updatedLink = await prisma.link.update({ where: { id: linkId }, data: { title, url } });
+    const { id, title, url } = linkBody.extend({ id: z.string() }).parse(req.body);
+    const updatedLink = await prisma.link.update({ where: { id }, data: { title, url } });
     res.status(200).json({ success: true, updatedId: updatedLink.id });
   } catch (err) {
     if (err instanceof z.ZodError) {
@@ -53,12 +51,10 @@ export const updateLink = async (req: Request, res: Response, next: NextFunction
 };
 
 export const deleteLink = async (req: Request, res: Response, next: NextFunction) => {
-  const userId = req.userId!;
-
   try {
-    const { url } = linkBody.pick({ url: true }).parse(req.body);
-    const deletedLink = await prisma.link.deleteMany({ where: { AND: [{ userId }, { url }] } });
-    res.status(200).json({ success: true, count: deletedLink.count });
+    const { id } = linkBody.extend({ id: z.string() }).parse(req.body);
+    await prisma.link.delete({ where: { id } });
+    res.status(200).json({ success: true, linkId: id });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return next(new UserInputError(formatZodIssue(err.issues[0])));
