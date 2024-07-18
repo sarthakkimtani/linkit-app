@@ -13,11 +13,16 @@ function Phone({ links }: { links: Link[] }) {
         </AvatarFallback>
       </Avatar>
       <h4 className="font-bold mt-2">@{authState.user?.username}</h4>
-      <div className="flex flex-col items-center mt-6 w-10/12">
+      <div className="flex flex-col w-10/12 items-center mt-6 overflow-y-auto scrollbar-width-none max-h-[80%]">
         {links.map((link) => (
-          <div className="w-full bg-[#f3e9dc] py-3 mb-4 text-black font-medium text-sm text-center rounded-lg">
-            <h3>{link.title}</h3>
-          </div>
+          <a
+            key={link.url}
+            href={link.url}
+            target="_blank"
+            className="w-full bg-accent py-3 mb-4 text-black font-medium text-sm text-center rounded-lg"
+          >
+            {link.title}
+          </a>
         ))}
       </div>
     </div>

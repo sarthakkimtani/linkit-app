@@ -12,7 +12,7 @@ function InputField({ labelName, ...rest }: InputFieldProps) {
     <div className="grid w-full items-center mb-3">
       <div className="flex flex-col space-y-1.5">
         <Label htmlFor="name">{labelName}</Label>
-        <Input className="bg-background" {...rest} />
+        <Input {...rest} />
       </div>
     </div>
   );

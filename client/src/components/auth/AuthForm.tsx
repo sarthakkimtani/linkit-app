@@ -58,6 +58,7 @@ function AuthForm({ authMode }: { authMode: AuthMode }) {
             labelName="Username"
             placeholder="Eg. abcxyz"
             onChange={handleChange}
+            className="bg-background"
             required
           />
         )}
@@ -67,6 +68,7 @@ function AuthForm({ authMode }: { authMode: AuthMode }) {
           labelName="Email"
           placeholder="Eg. abc@xyz.com"
           onChange={handleChange}
+          className="bg-background"
           required
         />
         <InputField
@@ -75,6 +77,7 @@ function AuthForm({ authMode }: { authMode: AuthMode }) {
           labelName="Password"
           placeholder="Enter password"
           onChange={handleChange}
+          className="bg-background"
           required
         />
       </CardContent>

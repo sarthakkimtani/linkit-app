@@ -30,6 +30,7 @@ interface ErrorType {
 }
 
 interface Link {
+  id: string;
   url: string;
   title: string;
 }

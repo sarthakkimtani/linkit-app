@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Card } from "@/components/ui/card";
-import AuthForm from "@/components/AuthForm";
-import AuthHeader from "@/components/AuthHeader";
+import AuthForm from "@/components/auth/AuthForm";
+import AuthHeader from "@/components/auth/AuthHeader";
 import useAuth from "@/hooks/useAuth";
 
 import Logo from "@/assets/logo.svg";

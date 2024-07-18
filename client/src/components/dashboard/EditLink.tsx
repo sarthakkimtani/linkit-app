@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import EditableField from "@/components/EditableField";
+import EditableField from "@/components/dashboard/EditableField";
 
 import DragIcon from "@/assets/drag.svg";
 import BinIcon from "@/assets/bin.svg";
@@ -16,19 +16,19 @@ function EditLink({ link, onDelete, onUpdate }: EditLinkPropTypes) {
   const [urlEditable, setUrlEditable] = useState<boolean>(false);
 
   const updateTitle = (newTitle: string) => {
-    const newLink = { title: newTitle, url: link.url };
+    const newLink = { id: link.id, title: newTitle, url: link.url };
     setTitleEditable(false);
     onUpdate(link, newLink);
   };
 
   const updateUrl = (newUrl: string) => {
-    const newLink = { title: link.title, url: newUrl };
+    const newLink = { id: link.id, title: link.title, url: newUrl };
     setUrlEditable(false);
     onUpdate(link, newLink);
   };
 
   return (
-    <div className="flex flex-col w-8/12 bg-[#f3e9dc] px-4 py-6 mb-6 text-black rounded-3xl">
+    <div className="flex flex-col w-8/12 bg-accent px-4 py-6 mb-6 text-black rounded-3xl">
       <div className="flex flex-row items-center">
         <img
           src={DragIcon}
