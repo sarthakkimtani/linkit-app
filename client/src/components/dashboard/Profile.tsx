@@ -21,9 +21,11 @@ function Profile() {
     navigate("/auth");
   };
 
+  const navigateToAccount = () => navigate("/account");
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="mb-10">
+      <DropdownMenuTrigger className="mr-6 lg:mb-10 lg:mr-0">
         <Avatar>
           <AvatarFallback className="bg-background">
             {authState.user?.username.charAt(0).toUpperCase()}
@@ -32,7 +34,7 @@ function Profile() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="ml-4 mb-1 bg-[#332e31] text-white">
         <DropdownMenuLabel>{authState.user?.username}</DropdownMenuLabel>
-        <DropdownMenuItem className="cursor-pointer">
+        <DropdownMenuItem onClick={navigateToAccount} className="cursor-pointer">
           <div className="flex flex-row items-center">
             <PersonIcon />
             <span className="ml-2">Account</span>

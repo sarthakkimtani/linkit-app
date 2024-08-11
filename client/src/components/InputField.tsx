@@ -9,8 +9,8 @@ interface InputFieldProps extends ComponentProps<"input"> {
 
 function InputField({ labelName, ...rest }: InputFieldProps) {
   return (
-    <div className="grid w-full items-center mb-3">
-      <div className="flex flex-col space-y-1.5">
+    <div className="grid w-full mb-3">
+      <div className="flex flex-col items-start space-y-1.5">
         <Label htmlFor="name">{labelName}</Label>
         <Input {...rest} />
       </div>

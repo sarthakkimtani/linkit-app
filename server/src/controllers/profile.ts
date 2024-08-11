@@ -10,6 +10,7 @@ export const getProfile = async (req: Request, res: Response, next: NextFunction
     const links = await prisma.link.findMany({
       where: { user: { username: username } },
       select: {
+        id: true,
         title: true,
         url: true,
       },

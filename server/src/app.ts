@@ -10,7 +10,7 @@ dotenv.config();
 const PORT = process.env.PORT;
 const app: Express = express();
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: process.env.ORIGIN_URL,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 200,

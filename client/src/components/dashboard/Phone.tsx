@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import useAuth from "@/hooks/useAuth";
+import LinkTile from "@/components/LinkTile";
 
 function Phone({ links }: { links: Link[] }) {
   const { authState } = useAuth();
@@ -15,14 +16,7 @@ function Phone({ links }: { links: Link[] }) {
       <h4 className="font-bold mt-2">@{authState.user?.username}</h4>
       <div className="flex flex-col w-10/12 items-center mt-6 overflow-y-auto scrollbar-width-none max-h-[80%]">
         {links.map((link) => (
-          <a
-            key={link.url}
-            href={link.url}
-            target="_blank"
-            className="w-full bg-accent py-3 mb-4 text-black font-medium text-sm text-center rounded-lg"
-          >
-            {link.title}
-          </a>
+          <LinkTile key={link.id} link={link} className="w-full" />
         ))}
       </div>
     </div>

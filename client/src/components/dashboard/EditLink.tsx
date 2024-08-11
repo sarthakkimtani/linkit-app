@@ -28,7 +28,7 @@ function EditLink({ link, onDelete, onUpdate }: EditLinkPropTypes) {
   };
 
   return (
-    <div className="flex flex-col w-8/12 bg-accent px-4 py-6 mb-6 text-black rounded-3xl">
+    <div className="flex flex-col w-full lg:w-8/12 bg-accent px-4 py-6 mb-6 text-black rounded-3xl">
       <div className="flex flex-row items-center">
         <img
           src={DragIcon}

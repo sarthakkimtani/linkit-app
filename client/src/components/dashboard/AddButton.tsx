@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 import {
@@ -34,7 +34,7 @@ function AddButton({ addLink }: { addLink: (link: Link) => void }) {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>
-        <Button className="flex items-center bg-accent hover:bg-accent w-8/12 py-5 rounded-3xl">
+        <Button className="flex items-center w-full lg:w-8/12 bg-accent hover:bg-accent py-5 rounded-3xl">
           <PlusIcon className="mr-1" />
           Add Link
         </Button>
