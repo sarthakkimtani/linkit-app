@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { z } from "zod";
 
 import prisma from "../prisma.js";
-import { UserInputError } from "../exceptions/errors.js";
+import { NotFoundError, UserInputError } from "../exceptions/errors.js";
 import { formatZodIssue } from "../utils/zodUtils.js";
 
 const linkBody = z.object({
@@ -39,9 +39,15 @@ export const postLink = async (req: Request, res: Response, next: NextFunction) 
 
 export const updateLink = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id, title, url } = linkBody.extend({ id: z.string() }).parse(req.body);
-    const updatedLink = await prisma.link.update({ where: { id }, data: { title, url } });
-    res.status(200).json({ success: true, updatedId: updatedLink.id });
+    const id = req.params.id;
+    const { title, url } = linkBody.parse(req.body);
+
+    const data = await prisma.link.updateMany({ where: { id }, data: { title, url } });
+    if (data.count == 0) {
+      return next(new NotFoundError("Link does not exist"));
+    }
+
+    res.status(200).json({ success: true, updatedId: id });
   } catch (err) {
     if (err instanceof z.ZodError) {
       return next(new UserInputError(formatZodIssue(err.issues[0])));

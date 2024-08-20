@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { ExitIcon, PersonIcon } from "@radix-ui/react-icons";
+import { ExitIcon, GearIcon } from "@radix-ui/react-icons";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -21,7 +21,7 @@ function Profile() {
     navigate("/auth");
   };
 
-  const navigateToAccount = () => navigate("/account");
+  const navigateToSettings = () => navigate("/settings");
 
   return (
     <DropdownMenu>
@@ -34,10 +34,10 @@ function Profile() {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="ml-4 mb-1 bg-[#332e31] text-white">
         <DropdownMenuLabel>{authState.user?.username}</DropdownMenuLabel>
-        <DropdownMenuItem onClick={navigateToAccount} className="cursor-pointer">
+        <DropdownMenuItem onClick={navigateToSettings} className="cursor-pointer">
           <div className="flex flex-row items-center">
-            <PersonIcon />
-            <span className="ml-2">Account</span>
+            <GearIcon />
+            <span className="ml-2">Settings</span>
           </div>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">

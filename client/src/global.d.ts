@@ -15,6 +15,8 @@ interface AuthContextType {
   authState: AuthState;
   login: (credentials: { email: string; password: string }) => Promise<void>;
   signup: (credentials: { username: string; email: string; password: string }) => Promise<void>;
+  update: (credentials: { username?: string; email?: string }) => Promise<void>;
+  changePassword: (credentials: { oldPassword: string; newPassword: string }) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -26,6 +28,11 @@ interface Credentials {
 
 interface ErrorType {
   isError: boolean;
+  description: string;
+}
+
+interface SuccessType {
+  isSuccess: boolean;
   description: string;
 }
 

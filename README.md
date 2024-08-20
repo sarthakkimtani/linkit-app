@@ -21,9 +21,14 @@ This project is a full stack application that utilizes PostgreSQL as the databas
 
 ## Usage
 
-1. Start the backend server: `cd backend && npm start`
-2. Start the frontend development server: `cd frontend && npm start`
-3. Open your browser and navigate to `http://localhost:3000` to view the application.
+Running this project requires `pm2`. To install `pm2` run the following command:
+
+```bash
+npm install -g pm2
+```
+
+1. Start the application using `pm2`: `pm2 start`
+2. Open your browser and navigate to `http://localhost:3000` to view the application.
 
 ## Contributing
 
@@ -35,4 +40,4 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## Contact
 
-For any questions or inquiries, please contact [your-email@example.com](mailto:your-email@example.com).
+For any questions or inquiries, please contact the repository owner.

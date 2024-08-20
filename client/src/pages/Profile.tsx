@@ -16,7 +16,7 @@ function ProfilePage() {
   const [notFound, setNotFound] = useState<boolean>(false);
   const { id } = useParams();
 
-  useTitle(`@${id}'s LinkIt`);
+  useTitle(notFound ? "404: Not Found" : `@${id}'s LinkIt`);
 
   useEffect(() => {
     setLoading(true);

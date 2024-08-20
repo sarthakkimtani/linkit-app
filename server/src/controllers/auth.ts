@@ -57,7 +57,7 @@ export const signup = async (req: Request, res: Response, next: NextFunction) =>
     const { email, password, username } = signupBody.parse(req.body);
     await authUtils.findUser(email, username);
 
-    const passwordHash = await authUtils.generatePassword(password);
+    const passwordHash = await authUtils.generatePasswordHash(password);
     const user = await prisma.user.create({
       data: { email, password: passwordHash, username },
     });

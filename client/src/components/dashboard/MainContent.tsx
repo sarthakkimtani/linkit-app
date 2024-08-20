@@ -54,7 +54,8 @@ function MainContent({ onError }: { onError: React.Dispatch<React.SetStateAction
 
   const updateLink = async (oldLink: Link, newLink: Link) => {
     try {
-      await axiosInstance.put("/links", newLink);
+      const id = oldLink.id;
+      await axiosInstance.put(`/links/${id}`, newLink);
       const newArr = links.map((link) => (link === oldLink ? newLink : link));
       setLinks(newArr);
     } catch (err) {

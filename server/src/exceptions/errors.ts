@@ -33,6 +33,18 @@ export class NotFoundError extends HttpError {
   }
 }
 
+export class MethodNotAllowedError extends HttpError {
+  constructor(message: string) {
+    super(message, 405, "Not Allowed");
+  }
+}
+
+export class ResourceConflictError extends HttpError {
+  constructor(message: string) {
+    super(message, 409, "Conflict");
+  }
+}
+
 export class InternalServerError extends HttpError {
   constructor(message: string) {
     super(message, 500, "Internal Server Error");

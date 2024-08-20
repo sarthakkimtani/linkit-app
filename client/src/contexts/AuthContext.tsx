@@ -42,12 +42,31 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setAuthState({ user: null, loading: false });
   };
 
+  const update = async (credentials: { username?: string; email?: string }) => {
+    if (!credentials.username && !credentials.email) {
+      return;
+    }
+    const userId = authState.user!.id;
+    await axiosInstance.patch(`/user/${userId}`, credentials);
+    const updatedUser = {
+      ...authState.user!,
+      username: credentials.username! || authState.user!.username,
+      email: credentials.email! || authState.user!.email,
+    };
+    setAuthState({ user: updatedUser, loading: false });
+  };
+
+  const changePassword = async (credentials: { oldPassword: string; newPassword: string }) => {
+    const userId = authState.user!.id;
+    await axiosInstance.post(`/user/password/${userId}`, credentials);
+  };
+
   useEffect(() => {
     setAccessToken(token);
   }, [token]);
 
   return (
-    <AuthContext.Provider value={{ authState, login, signup, logout }}>
+    <AuthContext.Provider value={{ authState, login, signup, logout, update, changePassword }}>
       {children}
     </AuthContext.Provider>
   );

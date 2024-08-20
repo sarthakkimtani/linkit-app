@@ -15,7 +15,7 @@ class AuthUtils {
     }
   }
 
-  async generatePassword(password: string) {
+  async generatePasswordHash(password: string) {
     return await hash(password, 10);
   }
 

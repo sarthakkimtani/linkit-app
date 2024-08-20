@@ -6,7 +6,7 @@ const linksRouter: Router = Router();
 
 linksRouter.get("/", getLinks);
 linksRouter.post("/", postLink);
-linksRouter.put("/", updateLink);
+linksRouter.put("/:id", updateLink);
 linksRouter.delete("/", deleteLink);
 
 export default linksRouter;

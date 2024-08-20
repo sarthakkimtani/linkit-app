@@ -5,7 +5,7 @@ import AuthPage from "@/pages/Auth";
 import DashboardPage from "@/pages/Dashboard";
 import NotFoundPage from "@/pages/NotFound";
 import ProfilePage from "@/pages/Profile";
-import AccountPage from "@/pages/Account";
+import AccountPage from "@/pages/Settings";
 
 import useAuth from "@/hooks/useAuth";
 
@@ -28,7 +28,7 @@ const App = () => {
           element={authState.user ? <DashboardPage /> : <Navigate to="/auth" />}
         />
         <Route
-          path="/account"
+          path="/settings"
           element={authState.user ? <AccountPage /> : <Navigate to="/auth" />}
         />
       </Routes>
