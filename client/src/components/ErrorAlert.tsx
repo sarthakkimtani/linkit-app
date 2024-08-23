@@ -20,7 +20,7 @@ function ErrorAlert({ error }: { error: ErrorType }) {
         show ? "translate-y-0 mb-10" : "translate-y-40"
       }`}
     >
-      <Alert variant="destructive" className="w-4/5 md:w-96 bg-destructive text-white">
+      <Alert variant="destructive" className="w-52 md:w-96 bg-destructive text-white">
         <ExclamationTriangleIcon color="white" className="h-5 w-4" />
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>{error.description}</AlertDescription>

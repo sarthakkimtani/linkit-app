@@ -27,7 +27,7 @@ Running this project requires `pm2`. To install `pm2` run the following command:
 npm install -g pm2
 ```
 
-1. Start the application using `pm2`: `pm2 start`
+1. Start the application using: `pm2 start`
 2. Open your browser and navigate to `http://localhost:3000` to view the application.
 
 ## Contributing

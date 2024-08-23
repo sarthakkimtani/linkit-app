@@ -70,7 +70,7 @@ function SettingsContent() {
       <ErrorAlert error={error} />
       <SuccessAlert success={success} />
       <h1 className="text-xl font-bold mb-7">My Account</h1>
-      <div className="flex flex-col w-1/3">
+      <div className="flex flex-col w-full lg:w-2/3 xl:w-1/3">
         <div className="flex flex-row items-center justify-between mb-6">
           <h4 className="text-lg font-medium">Username</h4>
           <Input
@@ -108,7 +108,7 @@ function SettingsContent() {
               <span>Edit</span>
             </div>
           </Button>
-          <Button variant="default" onClick={handleSubmit}>
+          <Button variant="default" disabled={!editMode} onClick={handleSubmit}>
             <div className="flex flex-row items-center">
               <PaperPlaneIcon className="mr-2" />
               <span>Save</span>
