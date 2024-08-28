@@ -16,7 +16,7 @@ import InputField from "@/components/InputField";
 
 function AddButton({ addLink }: { addLink: (link: Link) => void }) {
   const [open, setOpen] = useState<boolean>(false);
-  const [link, setLink] = useState<Link>({ id: "", title: "", url: "" });
+  const [link, setLink] = useState<Link>({ id: "", title: "", url: "", order: 0 });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLink({

@@ -40,4 +40,5 @@ interface Link {
   id: string;
   url: string;
   title: string;
+  order: number;
 }

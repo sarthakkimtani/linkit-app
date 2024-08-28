@@ -14,6 +14,7 @@ export const getProfile = async (req: Request, res: Response, next: NextFunction
         title: true,
         url: true,
       },
+      orderBy: { order: "asc" },
     });
     if (links.length == 0) {
       return next(new NotFoundError("Links not found"));

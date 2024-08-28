@@ -1,12 +1,19 @@
 import { Router } from "express";
 
-import { deleteLink, getLinks, postLink, updateLink } from "../controllers/links.js";
+import {
+  deleteLink,
+  getLinks,
+  createLink,
+  updateLink,
+  updateLinksOrder,
+} from "../controllers/links.js";
 
 const linksRouter: Router = Router();
 
 linksRouter.get("/", getLinks);
-linksRouter.post("/", postLink);
+linksRouter.post("/", createLink);
+linksRouter.put("/reorder", updateLinksOrder);
 linksRouter.put("/:id", updateLink);
-linksRouter.delete("/", deleteLink);
+linksRouter.delete("/:id", deleteLink);
 
 export default linksRouter;
