@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
 
 const HomePage = () => {
-  const { user } = useAuth();
+  const { authState } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (authState.user) {
       navigate("/dashboard");
     } else {
       navigate("/auth");
     }
-  }, [user, navigate]);
+  }, [authState.user, navigate]);
 
   return null;
 };
