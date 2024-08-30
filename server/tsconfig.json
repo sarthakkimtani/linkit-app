@@ -5,7 +5,8 @@
     "moduleResolution": "NodeNext",
     "outDir": "./dist",
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "typeRoots": ["src/types"]
   },
   "ts-node": {
     "esm": true
