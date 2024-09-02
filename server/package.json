@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/app.ts"
+    "dev": "tsx watch src/app.ts",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:generate": "prisma generate",
+    "deploy": "npm run build && npm run prisma:generate && npm run prisma:migrate"
   },
   "keywords": [],
   "author": "Sarthak Kimtani",
